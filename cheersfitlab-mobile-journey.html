@@ -1,0 +1,796 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>치얼스핏랩 모바일 사용자 여정 지도</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans+KR:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F1F3F0;
+    --card:#FBFCFA;
+    --ink:#14181C;
+    --ink2:#59646E;
+    --ink3:#8C959D;
+    --rule:#D2D8D1;
+    --rule2:#B6BFB6;
+    --own:#14181C;
+    --naver:#03C75A;
+    --kakao:#F5C400;
+    --alert:#C7362B;
+    --sans:'IBM Plex Sans KR',system-ui,sans-serif;
+    --mono:'IBM Plex Mono','IBM Plex Sans KR',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--paper);color:var(--ink);font-family:var(--sans);
+    font-weight:400;line-height:1.75;-webkit-font-smoothing:antialiased;
+    padding:0 20px 100px;
+  }
+  .wrap{max-width:940px;margin:0 auto}
+
+  /* ---------- spec sheet header ---------- */
+  header{padding:64px 0 0}
+  .eyebrow{
+    font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.18em;
+    text-transform:uppercase;color:var(--ink3);
+  }
+  h1{
+    font-size:clamp(30px,5.4vw,48px);font-weight:600;line-height:1.18;
+    letter-spacing:-.025em;margin:14px 0 10px;
+  }
+  .dek{font-size:17px;font-weight:300;color:var(--ink2);max-width:60ch}
+  .meta{
+    margin-top:36px;border-top:1.5px solid var(--ink);border-bottom:1px solid var(--rule2);
+    display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  }
+  .meta div{padding:14px 16px 14px 0;border-right:1px solid var(--rule)}
+  .meta div:last-child{border-right:0}
+  .meta dt{
+    font-family:var(--mono);font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--ink3);margin-bottom:3px;
+  }
+  .meta dd{font-size:13.5px;font-weight:500;line-height:1.5}
+
+  /* ---------- sections ---------- */
+  section{margin-top:76px}
+  .shead{display:flex;align-items:baseline;gap:16px;border-bottom:1.5px solid var(--ink);padding-bottom:10px}
+  .snum{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--ink3)}
+  h2{font-size:clamp(21px,3.2vw,27px);font-weight:600;letter-spacing:-.02em;line-height:1.3}
+  .sintro{margin-top:18px;font-size:15.5px;color:var(--ink2);max-width:66ch;font-weight:300}
+  h3{font-size:17px;font-weight:600;margin:40px 0 12px;letter-spacing:-.01em}
+
+  /* ---------- rail legend ---------- */
+  .legend{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 0}
+  .chip{
+    display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);
+    font-size:11px;font-weight:500;letter-spacing:.04em;padding:5px 11px 5px 8px;
+    border:1px solid var(--rule2);border-radius:999px;background:var(--card);
+  }
+  .dot{width:9px;height:9px;border-radius:2px;display:block}
+  .d-own{background:var(--own)} .d-naver{background:var(--naver)}
+  .d-kakao{background:var(--kakao)} .d-alert{background:var(--alert)}
+
+  /* ---------- flow ---------- */
+  .flow{margin-top:34px}
+  .stage{display:grid;grid-template-columns:64px 1fr;gap:0}
+  .gutter{position:relative;border-right:1px solid var(--rule2)}
+  .gutter b{
+    position:absolute;top:0;right:-1px;transform:translateX(50%);
+    background:var(--paper);font-family:var(--mono);font-size:11px;font-weight:600;
+    color:var(--ink2);padding:5px 0;width:26px;text-align:center;
+  }
+  .stage-body{padding:0 0 34px 24px}
+  .stage-title{font-size:15px;font-weight:600;letter-spacing:-.01em}
+  .stage-note{font-size:13.5px;color:var(--ink2);font-weight:300;margin-top:2px}
+  .nodes{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+  .node{
+    background:var(--card);border:1px solid var(--rule2);border-radius:3px;
+    padding:11px 14px;min-width:132px;flex:1 1 auto;
+    border-top:3px solid var(--own);
+  }
+  .node.n-naver{border-top-color:var(--naver)}
+  .node.n-kakao{border-top-color:var(--kakao)}
+  .node.n-neutral{border-top-color:var(--rule2)}
+  .node.n-alert{border-top-color:var(--alert)}
+  .node b{display:block;font-size:14px;font-weight:600;letter-spacing:-.01em}
+  .node span{display:block;font-family:var(--mono);font-size:11px;color:var(--ink2);margin-top:3px;line-height:1.5}
+  .branchlab{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink3);margin:16px 0 -4px;
+  }
+  .sub{
+    margin-top:12px;border-left:2px dashed var(--rule2);padding:2px 0 2px 18px;
+  }
+  .sub .subttl{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:var(--ink3);text-transform:uppercase}
+
+  /* ---------- entry bar ---------- */
+  .bars{margin-top:20px;border:1px solid var(--rule2);background:var(--card);padding:18px 20px;border-radius:3px}
+  .bar-row{display:grid;grid-template-columns:110px 1fr 76px;align-items:center;gap:12px;margin-bottom:9px}
+  .bar-row:last-child{margin-bottom:0}
+  .bar-row i{font-style:normal;font-size:13px;font-weight:500}
+  .track{height:9px;background:#E2E6E1;border-radius:1px;overflow:hidden}
+  .track b{display:block;height:100%;background:var(--own)}
+  .bar-row em{font-style:normal;font-family:var(--mono);font-size:12px;color:var(--ink2);text-align:right}
+
+  /* ---------- tables ---------- */
+  table{width:100%;border-collapse:collapse;margin-top:14px;font-size:13.5px}
+  caption{
+    text-align:left;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;
+    text-transform:uppercase;color:var(--ink3);padding-bottom:8px;
+  }
+  th{
+    text-align:left;font-size:11px;font-family:var(--mono);font-weight:600;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink2);border-bottom:1.5px solid var(--ink);
+    padding:8px 10px 8px 0;vertical-align:bottom;
+  }
+  td{border-bottom:1px solid var(--rule);padding:10px 10px 10px 0;vertical-align:top;line-height:1.6}
+  tbody tr:hover{background:#EAEDE9}
+  td code,.path{
+    font-family:var(--mono);font-size:11.5px;color:var(--ink2);
+    word-break:break-all;
+  }
+  .tag{
+    display:inline-block;font-family:var(--mono);font-size:10px;font-weight:600;
+    letter-spacing:.06em;padding:2px 7px;border-radius:2px;white-space:nowrap;
+  }
+  .t-own{background:#14181C;color:#F1F3F0}
+  .t-naver{background:var(--naver);color:#04371B}
+  .t-kakao{background:var(--kakao);color:#4A3B00}
+  .t-none{background:#E2E6E1;color:#59646E}
+  .t-alert{background:var(--alert);color:#FFF1EF}
+
+  /* ---------- page block ---------- */
+  .page{border-top:1.5px solid var(--ink);margin-top:38px;padding-top:16px}
+  .page-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:12px}
+  .page-head h3{margin:0;font-size:18px}
+  .page-head .path{font-size:11.5px;color:var(--ink3)}
+  .grp{margin-top:18px}
+  .grp-t{
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--ink3);padding-bottom:6px;border-bottom:1px solid var(--rule);
+  }
+  ul.items{list-style:none;margin-top:9px}
+  ul.items li{
+    position:relative;padding:4px 0 4px 20px;font-size:14px;line-height:1.65;
+    border-bottom:1px dotted var(--rule);
+  }
+  ul.items li:before{
+    content:'';position:absolute;left:2px;top:14px;width:7px;height:1.5px;background:var(--rule2);
+  }
+  ul.items li small{display:block;font-family:var(--mono);font-size:11px;color:var(--ink3);line-height:1.5}
+
+  /* ---------- callouts ---------- */
+  .finds{margin-top:24px;display:grid;gap:14px}
+  .find{
+    background:var(--card);border:1px solid var(--rule2);border-left:3px solid var(--ink);
+    border-radius:0 3px 3px 0;padding:16px 18px;
+  }
+  .find.f-alert{border-left-color:var(--alert)}
+  .find.f-naver{border-left-color:var(--naver)}
+  .find.f-kakao{border-left-color:var(--kakao)}
+  .find h4{font-size:15px;font-weight:600;letter-spacing:-.01em;display:flex;gap:9px;align-items:baseline}
+  .find h4 i{font-style:normal;font-family:var(--mono);font-size:11px;color:var(--ink3);flex:none}
+  .find p{font-size:14px;color:var(--ink2);margin-top:6px;line-height:1.7}
+  .find .why{
+    margin-top:10px;font-family:var(--mono);font-size:11.5px;color:var(--ink);
+    background:#E7EBE6;padding:8px 11px;border-radius:2px;line-height:1.65;
+  }
+
+  pre{
+    font-family:var(--mono);font-size:12px;line-height:1.75;background:var(--card);
+    border:1px solid var(--rule2);border-radius:3px;padding:14px 16px;margin-top:12px;
+    overflow-x:auto;color:var(--ink);
+  }
+  footer{
+    margin-top:80px;border-top:1.5px solid var(--ink);padding-top:16px;
+    font-family:var(--mono);font-size:11px;color:var(--ink3);letter-spacing:.04em;
+    display:flex;flex-wrap:wrap;gap:6px 20px;
+  }
+  @media (max-width:640px){
+    .stage{grid-template-columns:40px 1fr}
+    .stage-body{padding-left:16px}
+    .node{min-width:calc(50% - 5px)}
+    .bar-row{grid-template-columns:82px 1fr 62px}
+    .meta div{border-right:0;border-bottom:1px solid var(--rule)}
+  }
+</style>
+
+<div class="wrap">
+
+<header>
+  <p class="eyebrow">1단계 · 사용자 여정 분석</p>
+  <h1>치얼스핏랩 모바일<br>사용자 여정 지도</h1>
+  <p class="dek">모바일 화면에서 손님이 누를 수 있는 모든 것을, 실제로 눌러가며 하나씩 확인해 연결한 문서입니다. 다음 단계인 이벤트 매칭과 퍼널 설계의 바탕이 됩니다.</p>
+
+  <dl class="meta">
+    <div><dt>조사 대상</dt><dd>cheersfitlab.com</dd></div>
+    <div><dt>뷰포트</dt><dd>모바일 · 767px 이하</dd></div>
+    <div><dt>조사 방법</dt><dd>실제 클릭 · 화면 확인</dd></div>
+    <div><dt>조사일</dt><dd>2026.08.25</dd></div>
+    <div><dt>모바일 비중</dt><dd>전체 트래픽의 96%</dd></div>
+  </dl>
+</header>
+
+<!-- ============ 00 ============ -->
+<section>
+  <div class="shead"><span class="snum">00</span><h2>한눈에 보기</h2></div>
+  <p class="sintro">이 쇼핑몰의 여정에는 일반적인 쇼핑몰과 다른 특징이 네 가지 있습니다. 퍼널을 설계하기 전에 이걸 먼저 알아야 합니다.</p>
+
+  <div class="finds">
+    <div class="find">
+      <h4><i>A</i>홈이 입구가 아니다</h4>
+      <p>손님의 95%가 메인 페이지를 거치지 않고 광고에서 상품 상세페이지로 바로 들어옵니다. 홈을 시작점으로 잡은 퍼널은 이 쇼핑몰에서 의미가 없습니다.</p>
+    </div>
+    <div class="find">
+      <h4><i>B</i>상세페이지가 사실상 유일한 허브다</h4>
+      <p>모든 갈래가 상세페이지 한 화면에서 시작합니다. 구매하기, 장바구니, 네이버페이, 톡체크아웃 네 개의 버튼이 한 화면 안에 세로로 쌓여 있습니다.</p>
+    </div>
+    <div class="find f-alert">
+      <h4><i>C</i>결제 레일이 세 개로 갈라진다</h4>
+      <p>자사몰 결제, 네이버페이, 카카오 톡체크아웃. 뒤 두 개는 자사몰 밖으로 나갔다 돌아옵니다. 진입점도 상세페이지·장바구니·주문서 세 군데에 흩어져 있습니다.</p>
+    </div>
+    <div class="find f-alert">
+      <h4><i>D</i>주문서 결제수단 기본값이 네이버페이다</h4>
+      <p>비회원 주문서에 들어가면 결제수단이 네이버페이로 미리 선택되어 있습니다. 손님이 아무것도 안 건드리고 결제하기를 누르면 네이버 결제창으로 넘어갑니다.</p>
+    </div>
+  </div>
+
+  <h3>진입 경로 비중</h3>
+  <div class="bars">
+    <div class="bar-row"><i>상품 상세</i><div class="track"><b style="width:100%"></b></div><em>12,807</em></div>
+    <div class="bar-row"><i>메인 페이지</i><div class="track"><b style="width:5%"></b></div><em>639</em></div>
+    <div class="bar-row"><i>카테고리</i><div class="track"><b style="width:1.1%"></b></div><em>143</em></div>
+    <div class="bar-row"><i>검색</i><div class="track"><b style="width:0.5%"></b></div><em>1</em></div>
+  </div>
+  <p class="sintro" style="margin-top:10px;font-size:13px">최근 30일 · 모바일 유저 기준 · 유니크 방문자 수</p>
+</section>
+
+<!-- ============ 01 ============ -->
+<section>
+  <div class="shead"><span class="snum">01</span><h2>전체 플로우</h2></div>
+  <p class="sintro">진입부터 결제 완료까지 일곱 단계입니다. 색은 결제 레일을 뜻합니다.</p>
+
+  <div class="legend">
+    <span class="chip"><span class="dot d-own"></span>자사몰 내부</span>
+    <span class="chip"><span class="dot d-naver"></span>네이버페이</span>
+    <span class="chip"><span class="dot d-kakao"></span>카카오 톡체크아웃</span>
+    <span class="chip"><span class="dot d-alert"></span>숨어 있는 경로</span>
+  </div>
+
+  <div class="flow">
+
+    <div class="stage">
+      <div class="gutter"><b>01</b></div>
+      <div class="stage-body">
+        <p class="stage-title">진입</p>
+        <p class="stage-note">셋 중 어디로 들어와도 종착지는 상세페이지입니다.</p>
+        <div class="nodes">
+          <div class="node n-neutral"><b>광고 · 외부 유입</b><span>상세페이지 직행 · 95%</span></div>
+          <div class="node n-neutral"><b>메인 페이지</b><span>슬라이드 배너 → 상품 카드</span></div>
+          <div class="node n-neutral"><b>카테고리 · 검색</b><span>ALL / Category / 검색 레이어</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="gutter"><b>02</b></div>
+      <div class="stage-body">
+        <p class="stage-title">상품 상세페이지 <span style="font-weight:400;color:var(--ink2)">— 허브</span></p>
+        <p class="stage-note">여기서 모든 갈래가 시작됩니다. 리뷰·찜·채널추가·문의도 이 화면 안에 있습니다.</p>
+        <div class="nodes">
+          <div class="node"><b>상품 정보</b><span>가격 · 타이머 · 관심도 배지</span></div>
+          <div class="node"><b>수량 조절</b><span>− / 1 / +</span></div>
+          <div class="node"><b>리뷰 · 문의</b><span>탭 4종 · 캐러셀 · 리뷰 작성</span></div>
+          <div class="node n-kakao"><b>카카오 채널 추가</b><span>3,000원 쿠폰 배너</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="gutter"><b>03</b></div>
+      <div class="stage-body">
+        <p class="stage-title">구매 버튼 4갈래</p>
+        <p class="stage-note">한 화면에 세로로 쌓여 있습니다. 아래로 갈수록 스크롤을 더 내려야 보입니다.</p>
+        <div class="nodes">
+          <div class="node"><b>구매하기</b><span>1순위 · 검정 버튼</span></div>
+          <div class="node"><b>장바구니</b><span>1순위 · 흰 버튼</span></div>
+          <div class="node n-naver"><b>N pay 구매</b><span>2순위 · 찜 버튼 동반</span></div>
+          <div class="node n-kakao"><b>톡체크아웃 간편구매</b><span>3순위 · Ch+ / 찜 동반</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="gutter"><b>04</b></div>
+      <div class="stage-body">
+        <p class="stage-title">장바구니 서브플로우</p>
+        <p class="stage-note">장바구니 버튼은 페이지 이동이 아니라 전체 화면 레이어를 띄웁니다.</p>
+
+        <div class="sub">
+          <p class="subttl">담기 완료 레이어 — 3갈래</p>
+          <div class="nodes">
+            <div class="node"><b>바로 구매하기</b><span>장바구니 페이지를 건너뜀</span></div>
+            <div class="node"><b>장바구니 이동</b><span>/order/basket.html</span></div>
+            <div class="node n-neutral"><b>× 닫기</b><span>상세로 복귀 · 담긴 상태 유지</span></div>
+          </div>
+        </div>
+
+        <div class="sub" style="margin-top:16px">
+          <p class="subttl">장바구니 페이지 — 4갈래</p>
+          <div class="nodes">
+            <div class="node"><b>전체상품주문</b><span>담긴 것 전부</span></div>
+            <div class="node"><b>선택상품주문</b><span>체크한 것만</span></div>
+            <div class="node n-naver"><b>N pay 구매</b><span>여기에도 또 있음</span></div>
+            <div class="node n-kakao"><b>톡체크아웃</b><span>여기에도 또 있음</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="gutter"><b>05</b></div>
+      <div class="stage-body">
+        <p class="stage-title">로그인 관문 5갈래</p>
+        <p class="stage-note">구매하기 또는 전체상품주문을 누르면 반드시 이 화면을 지납니다.</p>
+        <div class="nodes">
+          <div class="node"><b>카카오 로그인</b><span>기존 회원 = 로그인<br>신규 = 1초 회원가입</span></div>
+          <div class="node"><b>네이버 로그인</b><span>간편 로그인</span></div>
+          <div class="node"><b>일반 로그인</b><span>아이디 · 비밀번호</span></div>
+          <div class="node"><b>회원가입</b><span>폼 직접 입력</span></div>
+          <div class="node n-alert"><b>비회원 주문</b><span>noMember=1 일 때만 노출</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="gutter"><b>06</b></div>
+      <div class="stage-body">
+        <p class="stage-title">주문서</p>
+        <p class="stage-note">접었다 펼 수 있는 다섯 블록으로 되어 있습니다.</p>
+        <div class="nodes">
+          <div class="node"><b>구매상품</b><span>수량 확인 · × 삭제 가능</span></div>
+          <div class="node"><b>배송지</b><span>이름 · 주소검색 · 연락처 · 이메일</span></div>
+          <div class="node"><b>비회원 비밀번호</b><span>주문조회용 · 2회 입력</span></div>
+          <div class="node"><b>할인 / 부가결제</b><span>자동 할인 펼치기</span></div>
+          <div class="node n-naver"><b>결제수단</b><span>네이버페이가 기본 선택</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="stage">
+      <div class="gutter"><b>07</b></div>
+      <div class="stage-body" style="padding-bottom:0">
+        <p class="stage-title">결제 완료</p>
+        <p class="stage-note">자사몰 결제는 완료 페이지로 복귀하고, 네이버·카카오는 외부에서 결제한 뒤 돌아옵니다.</p>
+        <div class="nodes">
+          <div class="node"><b>주문완료 페이지</b><span>자사몰 결제 경로</span></div>
+          <div class="node n-naver"><b>네이버 복귀</b><span>외부 결제창 경유</span></div>
+          <div class="node n-kakao"><b>카카오 복귀</b><span>외부 결제창 경유</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3>결제 레일 3종 비교</h3>
+  <table>
+    <caption>같은 상품을 사는 세 가지 길</caption>
+    <thead>
+      <tr><th style="width:20%">구분</th><th style="width:26%">자사몰 결제</th><th style="width:27%">네이버페이</th><th style="width:27%">카카오 톡체크아웃</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>진입 버튼</td>
+        <td>구매하기 · 장바구니</td>
+        <td>N pay 구매</td>
+        <td>톡체크아웃 간편구매</td>
+      </tr>
+      <tr>
+        <td>진입 가능한 화면</td>
+        <td>상세 · 장바구니</td>
+        <td>상세 · 장바구니 · 주문서</td>
+        <td>상세 · 장바구니</td>
+      </tr>
+      <tr>
+        <td>로그인 관문</td>
+        <td>거침 (5갈래)</td>
+        <td>건너뜀</td>
+        <td>건너뜀</td>
+      </tr>
+      <tr>
+        <td>주문서</td>
+        <td>거침</td>
+        <td>건너뜀</td>
+        <td>건너뜀</td>
+      </tr>
+      <tr>
+        <td>자사몰 이탈</td>
+        <td>없음</td>
+        <td>네이버로 나갔다 복귀</td>
+        <td>카카오로 나갔다 복귀</td>
+      </tr>
+      <tr>
+        <td>모바일 화면 순서</td>
+        <td>1순위</td>
+        <td>2순위</td>
+        <td>3순위 · 스크롤 더 필요</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ============ 02 ============ -->
+<section>
+  <div class="shead"><span class="snum">02</span><h2>누를 수 있는 것 전체 목록</h2></div>
+  <p class="sintro">화면별로 손님이 손댈 수 있는 모든 요소입니다. 링크는 실제 경로를 함께 적었습니다.</p>
+
+  <!-- 공통 -->
+  <div class="page">
+    <div class="page-head"><h3>공통 요소</h3><span class="path">모든 화면 상단·하단</span></div>
+    <div class="grp">
+      <p class="grp-t">상단 고정</p>
+      <ul class="items">
+        <li>띠배너 — 1초 회원가입하고 73,000원 쿠폰팩 즉시 받기<small>/myshop/coupon/coupon.html</small></li>
+        <li>햄버거 메뉴 열기</li>
+        <li>로고 — 홈으로<small>/</small></li>
+        <li>검색<small>#search — 레이어로 열림</small></li>
+        <li>장바구니 아이콘 — 담긴 개수 배지 표시<small>/order/basket.html</small></li>
+      </ul>
+    </div>
+    <div class="grp">
+      <p class="grp-t">플로팅 버튼 (우측 하단)</p>
+      <ul class="items">
+        <li>카카오톡 채널 바로가기</li>
+        <li>채널톡 상담 열기</li>
+        <li>맨 위로</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 메뉴 -->
+  <div class="page">
+    <div class="page-head"><h3>햄버거 메뉴</h3><span class="path">좌측 슬라이드 패널</span></div>
+    <div class="grp">
+      <p class="grp-t">회원</p>
+      <ul class="items">
+        <li>로그인<small>/member/login.html</small></li>
+        <li>회원가입<small>/member/join.html</small></li>
+      </ul>
+    </div>
+    <div class="grp">
+      <p class="grp-t">상품</p>
+      <ul class="items">
+        <li>ALL<small>/category/all/155/</small></li>
+        <li>Category — 아코디언 펼치기<small>/category/category/153/</small></li>
+        <li>트리플 모닝 리셋샷<small>/category/트리플-모닝-리셋샷/154/</small></li>
+        <li>Trial Kit<small>/category/trial-kit/156/</small></li>
+      </ul>
+    </div>
+    <div class="grp">
+      <p class="grp-t">브랜드 · 커뮤니티</p>
+      <ul class="items">
+        <li>BRAND<small>/shopinfo/company.html</small></li>
+        <li>공지사항<small>/board/공지사항/1/</small></li>
+        <li>상품 사용후기<small>/board/상품-사용후기/4/</small></li>
+        <li>상품 Q&amp;A<small>/board/상품-qa/6/</small></li>
+        <li>이벤트<small>/board/이벤트/2/</small></li>
+        <li>이용안내 FAQ<small>/board/이용안내-faq/3/</small></li>
+        <li>문의하기<small>/board/문의하기/3001/</small></li>
+      </ul>
+    </div>
+    <div class="grp">
+      <p class="grp-t">기타</p>
+      <ul class="items">
+        <li>한국어 / KRW — 언어·통화 전환</li>
+        <li>메뉴 닫기</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 메인 -->
+  <div class="page">
+    <div class="page-head"><h3>메인 페이지</h3><span class="path">/</span></div>
+    <div class="grp">
+      <p class="grp-t">본문</p>
+      <ul class="items">
+        <li>메인 슬라이드 배너 — More View 버튼</li>
+        <li>Tasting Note 섹션</li>
+        <li>상품 카드 — 1BOX(10포) / 3BOX(30포) / 6BOX(60포) / Trial Kit</li>
+      </ul>
+    </div>
+    <div class="grp">
+      <p class="grp-t">마이 영역</p>
+      <ul class="items">
+        <li>마이페이지<small>/myshop/index.html</small></li>
+        <li>주문/배송조회<small>/myshop/order/list.html</small></li>
+        <li>최근 본 상품<small>/product/recent_view_product.html</small></li>
+        <li>관심상품<small>/myshop/wish_list.html</small></li>
+      </ul>
+    </div>
+    <div class="grp">
+      <p class="grp-t">검색 레이어</p>
+      <ul class="items">
+        <li>검색어 입력<small>/product/search.html</small></li>
+        <li>인기 검색어 — 1. 트리플모닝리셋샷</li>
+        <li>최근 검색어 전체삭제</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 상세 -->
+  <div class="page">
+    <div class="page-head"><h3>상품 상세페이지</h3><span class="path">/product/…/56/category/1/display/2/</span></div>
+
+    <div class="grp">
+      <p class="grp-t">상품 정보 영역</p>
+      <ul class="items">
+        <li>관심상품 하트 — 자사몰 위시리스트</li>
+        <li>공유하기</li>
+        <li>59개 리뷰 — 리뷰 탭으로 이동</li>
+        <li>남은 시간 타이머 배지</li>
+        <li>오늘 856명이 관심을 보였어요 배지</li>
+        <li>카드 자세히 보기 — 무이자 할부 안내</li>
+      </ul>
+    </div>
+
+    <div class="grp">
+      <p class="grp-t">프로모션</p>
+      <ul class="items">
+        <li><span class="tag t-kakao">KAKAO</span> 카카오톡 채널 추가하고 3,000원 쿠폰 받기 — 노란 배너</li>
+        <li><span class="tag t-naver">NAVER</span> 100% 지급! 최대 1만원 혜택 확인하기</li>
+        <li><span class="tag t-kakao">KAKAO</span> 페이포인트 적립 혜택 2배 UP!</li>
+        <li>스크롤 인센티브 위젯 — 계속 구경하면 500원 받아요</li>
+      </ul>
+    </div>
+
+    <div class="grp">
+      <p class="grp-t">구매 영역</p>
+      <ul class="items">
+        <li>수량 − / + 조절</li>
+        <li>무료배송 게이지 — 300원 더 담으면 무료배송</li>
+        <li><span class="tag t-own">자사몰</span> 장바구니 — 레이어를 띄움</li>
+        <li><span class="tag t-own">자사몰</span> 구매하기 — 로그인 관문으로</li>
+        <li><span class="tag t-naver">NAVER</span> N pay 구매</li>
+        <li><span class="tag t-naver">NAVER</span> 찜 — 네이버 위시리스트</li>
+        <li><span class="tag t-kakao">KAKAO</span> 톡체크아웃 간편구매</li>
+        <li><span class="tag t-kakao">KAKAO</span> Ch+ — 채널 추가</li>
+        <li><span class="tag t-kakao">KAKAO</span> 찜 — 카카오 위시리스트</li>
+      </ul>
+    </div>
+
+    <div class="grp">
+      <p class="grp-t">탭 · 리뷰</p>
+      <ul class="items">
+        <li>탭 — 상세정보 / 상품구매안내 / 리뷰(59) / 상품문의(0)</li>
+        <li>리뷰 캐러셀 — 좌우 화살표 · 페이지 도트 6개</li>
+        <li>개별 리뷰 카드 — 상세 열람</li>
+        <li>운영정책</li>
+        <li>리뷰 작성</li>
+        <li>별점 분포 그래프</li>
+      </ul>
+    </div>
+
+    <div class="grp">
+      <p class="grp-t">하단 고정바</p>
+      <ul class="items">
+        <li>리뷰 아이콘 (59)</li>
+        <li>장바구니</li>
+        <li>구매하기</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 담기 레이어 -->
+  <div class="page">
+    <div class="page-head"><h3>장바구니 담기 레이어</h3><span class="path">전체 화면 오버레이 · URL 변화 없음</span></div>
+    <div class="grp">
+      <ul class="items">
+        <li>바로 구매하기 — 장바구니 페이지를 건너뛰고 로그인 관문으로</li>
+        <li>장바구니 이동<small>/order/basket.html</small></li>
+        <li>× 닫기 — 상세페이지로 복귀, 담긴 상태는 유지</li>
+        <li>페이지네이션 — 담긴 상품이 여러 개일 때</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 장바구니 -->
+  <div class="page">
+    <div class="page-head"><h3>장바구니 페이지</h3><span class="path">/order/basket.html</span></div>
+    <div class="grp">
+      <p class="grp-t">상품 조작</p>
+      <ul class="items">
+        <li>국내배송상품 / 해외배송상품 탭</li>
+        <li>상품 체크박스</li>
+        <li>수량 − / + 조절</li>
+        <li>× 개별 삭제 — 확인 팝업 뜸</li>
+        <li>전체선택</li>
+        <li>선택삭제</li>
+        <li>해외장바구니로 이동</li>
+      </ul>
+    </div>
+    <div class="grp">
+      <p class="grp-t">주문 버튼</p>
+      <ul class="items">
+        <li><span class="tag t-own">자사몰</span> 전체상품주문</li>
+        <li><span class="tag t-own">자사몰</span> 선택상품주문</li>
+        <li><span class="tag t-naver">NAVER</span> N pay 구매</li>
+        <li><span class="tag t-kakao">KAKAO</span> 톡체크아웃 간편구매</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 로그인 -->
+  <div class="page">
+    <div class="page-head"><h3>로그인 관문</h3><span class="path">/member/login.html?noMember=1&amp;returnUrl=…</span></div>
+    <div class="grp">
+      <p class="grp-t">간편 로그인</p>
+      <ul class="items">
+        <li>카카오 1초 로그인 / 회원가입 — 로그인과 가입이 한 버튼</li>
+        <li>네이버 간편 로그인</li>
+        <li>회원가입 73,000원 쿠폰팩 배너</li>
+      </ul>
+    </div>
+    <div class="grp">
+      <p class="grp-t">일반 로그인</p>
+      <ul class="items">
+        <li>기존 회원 / 비회원 주문조회 탭 전환</li>
+        <li>아이디 입력</li>
+        <li>비밀번호 입력</li>
+        <li>보안접속 체크</li>
+        <li>로그인</li>
+        <li>아이디찾기<small>/member/id/find_id.html</small></li>
+        <li>비밀번호찾기<small>/member/passwd/find_passwd_info.html</small></li>
+        <li>회원가입<small>/member/join.html</small></li>
+      </ul>
+    </div>
+    <div class="grp">
+      <p class="grp-t">비회원 · 팝업</p>
+      <ul class="items">
+        <li><span class="tag t-alert">숨김</span> 비회원 주문 — noMember=1 파라미터가 있을 때만 노출</li>
+        <li>깜짝 쿠폰 팝업 — 2000원 쿠폰 받기 / × 닫기</li>
+        <li>← 뒤로 / 홈 아이콘</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 회원가입 -->
+  <div class="page">
+    <div class="page-head"><h3>회원가입</h3><span class="path">/member/join.html</span></div>
+    <div class="grp">
+      <ul class="items">
+        <li>카카오 1초 로그인 / 회원가입</li>
+        <li>네이버 로그인</li>
+        <li>아이디 <small>영문소문자·숫자 4~16자</small></li>
+        <li>비밀번호 <small>2가지 이상 조합 10~16자</small></li>
+        <li>비밀번호 확인</li>
+        <li>이름</li>
+        <li>휴대전화 — 앞자리 선택 + 두 칸 입력</li>
+        <li>이메일</li>
+        <li>약관 동의 · 가입 완료</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 주문서 -->
+  <div class="page">
+    <div class="page-head"><h3>주문서</h3><span class="path">/order/orderform.html?basket_type=all_buy&amp;delvtype=A</span></div>
+    <div class="grp">
+      <p class="grp-t">상단</p>
+      <ul class="items">
+        <li>← 뒤로</li>
+        <li>장바구니 아이콘 (개수 배지)</li>
+        <li>마이페이지 아이콘</li>
+      </ul>
+    </div>
+    <div class="grp">
+      <p class="grp-t">구매상품 블록</p>
+      <ul class="items">
+        <li>블록 접기 / 펼치기</li>
+        <li>× 상품 삭제</li>
+      </ul>
+    </div>
+    <div class="grp">
+      <p class="grp-t">배송지 블록</p>
+      <ul class="items">
+        <li>받는사람 <small>필수</small></li>
+        <li>우편번호 + 주소검색 버튼 <small>필수</small></li>
+        <li>기본주소 · 나머지 주소</li>
+        <li>휴대전화 <small>필수</small></li>
+        <li>이메일 + 도메인 선택 <small>필수</small></li>
+        <li>배송 요청사항 선택</li>
+        <li>배송지 정보로 간편 회원가입 체크박스</li>
+      </ul>
+    </div>
+    <div class="grp">
+      <p class="grp-t">비회원 주문조회 비밀번호</p>
+      <ul class="items">
+        <li>비밀번호 <small>2가지 이상 조합 10~16자</small></li>
+        <li>비밀번호 확인</li>
+      </ul>
+    </div>
+    <div class="grp">
+      <p class="grp-t">할인 / 부가결제</p>
+      <ul class="items">
+        <li>자동 할인 펼치기</li>
+        <li>적용금액 확인</li>
+      </ul>
+    </div>
+    <div class="grp">
+      <p class="grp-t">결제수단 <span class="tag t-naver" style="margin-left:6px">기본값 네이버페이</span></p>
+      <ul class="items">
+        <li><span class="tag t-naver">NAVER</span> 네이버페이 — 미리 선택되어 있음</li>
+        <li>무통장입금</li>
+        <li>카드결제</li>
+        <li>가상계좌</li>
+        <li>실시간 계좌이체</li>
+        <li>휴대폰결제</li>
+      </ul>
+    </div>
+    <div class="grp">
+      <p class="grp-t">하단 고정</p>
+      <ul class="items">
+        <li>결제하기 — 최종 금액 표시된 빨간 버튼</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 ============ -->
+<section>
+  <div class="shead"><span class="snum">03</span><h2>구조상 눈에 띄는 것</h2></div>
+  <p class="sintro">플로우를 그리면서 발견한, 다음 단계에서 반드시 고려해야 할 지점들입니다.</p>
+
+  <div class="finds">
+
+    <div class="find f-naver">
+      <h4><i>01</i>주문서 결제수단이 네이버페이로 미리 선택되어 있다</h4>
+      <p>비회원 주문서에 들어가면 여섯 개 결제수단 중 네이버페이가 이미 골라져 있습니다. 자사몰 주문서까지 다 온 손님도 아무것도 안 건드리면 네이버로 나갑니다.</p>
+      <div class="why">자사몰 경로로 분류했던 손님 일부가 실제로는 네이버 레일로 빠져나가고 있을 수 있음</div>
+    </div>
+
+    <div class="find f-alert">
+      <h4><i>02</i>비회원 주문은 숨어 있는 버튼이다</h4>
+      <p>로그인 페이지를 그냥 열면 비회원 주문 버튼이 없습니다. 구매를 시도해서 <span class="path">noMember=1</span> 파라미터가 붙었을 때만 화면 맨 아래에 나타납니다.</p>
+      <div class="why">비회원 구매 경로를 보려면 주문 시도로 들어온 세션만 따로 봐야 함</div>
+    </div>
+
+    <div class="find">
+      <h4><i>03</i>장바구니 담기는 페이지 이동이 아니다</h4>
+      <p>레이어가 뜨고 URL이 바뀌지 않습니다. 그리고 여기서 바로 구매하기를 누르면 장바구니 페이지를 아예 건너뜁니다.</p>
+      <div class="why">담기 이후 경로가 두 갈래로 갈라짐 · 장바구니 페이지를 거치지 않는 구매가 존재</div>
+    </div>
+
+    <div class="find">
+      <h4><i>04</i>카카오·네이버는 로그인과 회원가입이 한 버튼이다</h4>
+      <p>기존 회원이 누르면 로그인, 처음 온 사람이 누르면 그 자리에서 가입까지 끝납니다. 두 행동이 같은 클릭에서 갈라집니다.</p>
+      <div class="why">로그인과 가입을 클릭 기준으로는 구분할 수 없음 · 결과 기준으로만 나뉨</div>
+    </div>
+
+    <div class="find f-kakao">
+      <h4><i>05</i>간편결제 진입점이 세 군데에 흩어져 있다</h4>
+      <p>네이버페이는 상세·장바구니·주문서 세 곳, 톡체크아웃은 상세·장바구니 두 곳에 있습니다. 같은 결제인데 출발점이 여러 개입니다.</p>
+      <div class="why">한 곳만 보면 간편결제 이용량을 실제보다 적게 잡게 됨</div>
+    </div>
+
+    <div class="find">
+      <h4><i>06</i>찜 버튼이 세 종류다</h4>
+      <p>상단 하트는 자사몰 관심상품, 네이버페이 옆 찜은 네이버, 톡체크아웃 옆 찜은 카카오. 각각 다른 곳에 저장됩니다.</p>
+      <div class="why">셋을 하나로 합쳐 보면 안 됨 · 상단 하트는 성격이 다름</div>
+    </div>
+
+    <div class="find">
+      <h4><i>07</i>상세페이지에 체류를 유도하는 장치가 여럿 있다</h4>
+      <p>남은 시간 타이머, 스크롤하면 시간이 줄어드는 위젯, 계속 구경하면 500원, 오늘 856명이 관심을 보였어요 배지. 모두 이탈을 막으려는 장치입니다.</p>
+      <div class="why">스크롤 행동이 자연스러운 관심이 아니라 인센티브로 유발된 것일 수 있음</div>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <span>치얼스핏랩 모바일 사용자 여정 지도</span>
+  <span>1단계 · 여정 분석</span>
+  <span>다음 단계 · 이벤트 매칭 및 퍼널 설계</span>
+</footer>
+
+</div>
