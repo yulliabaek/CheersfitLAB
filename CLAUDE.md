@@ -9,7 +9,10 @@
   - 항상 `targetShopName`에 `"치얼쓰핏 랩"` (englishName: `CheersfitLAB`)을 사용.
   - 쓰기/발행성 도구(쿠폰 생성, 캠페인 등록, 광고 생성/수정 등)는 **분석 목적으로는 사용하지 않음** — 이 프로젝트는 조회·분석 전용.
   - 기능 위치를 모르면 `get_nerdboard_guide`로 먼저 탐색.
-- **이벤트/퍼널 데이터**: 현재 별도 이벤트 트래킹 도구(GA4, Amplitude 등)가 이 세션에 연결되어 있는지 확인 필요 — 연결된 소스가 없으면 사용자에게 수집 방법(CSV 익스포트, GA4 연동 등)을 확인해야 함.
+- **Amplitude MCP** (`mcp__495260cd...`): 이벤트/퍼널/코호트 데이터 소스. org `cheersfitlab` (org id 454261), 기본 프로젝트 `default` (appId **847753**) 사용.
+  - 세션 시작 시 `get_amplitude_context`(인자 없이)로 프로젝트 목록 재확인 가능.
+  - 이벤트/프로퍼티명은 프로젝트마다 다르므로 추측하지 말고 `get_events`/`get_properties`로 먼저 확인.
+  - 차트 조회는 `search`로 기존 저장 차트를 찾거나, ad-hoc 분석은 `query_amplitude_data`로 정의를 만들어 실행.
 
 ## 분석 범위
 1. 광고 성과 (채널별 ROAS/CPA/CTR 등, 크리에이티브 성과)
