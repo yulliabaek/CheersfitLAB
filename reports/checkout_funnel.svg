@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" width="640" height="420" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" role="img" aria-label="주문서 퍼널: 279명 진입, 결제 버튼 클릭 198명, 결제 완료 171명. 이탈자 108명 중 결제 버튼 클릭 전 81명(75%), 클릭 후 27명(25%)">
-  <title>주문서 퍼널과 이탈자 분포</title>
-  <rect width="640" height="420" fill="#fcfcfb"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 300" width="640" height="300" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" role="img" aria-label="주문서 퍼널: 279명 진입, 결제 버튼 클릭 198명(81명 이탈), 결제 완료 171명(27명 이탈)">
+  <title>주문서 퍼널</title>
+  <rect width="640" height="300" fill="#fcfcfb"/>
   <defs>
     <pattern id="lost" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
       <rect width="8" height="8" fill="#fde6d4"/>
@@ -13,7 +13,7 @@
   </defs>
 
   <!-- ===== Part 1: funnel (scale 279 -> 160px, base y=230) ===== -->
-  <text x="40" y="34" fill="#52514e" font-size="13" font-weight="700">① 주문서 퍼널</text>
+  <text x="40" y="34" fill="#52514e" font-size="13" font-weight="700">주문서 퍼널</text>
   <line x1="40" y1="230" x2="600" y2="230" stroke="#d6d5d0" stroke-width="1"/>
 
   <path d="M90,230 V74 a4,4 0 0 1 4,-4 H186 a4,4 0 0 1 4,4 V230 Z" fill="#7aa9e0"/>
@@ -37,14 +37,5 @@
     <text x="500" y="250">결제 완료</text>
   </g>
 
-  <!-- ===== Part 2: where the 108 dropouts went (100% bar, 560px) ===== -->
-  <text x="40" y="294" fill="#52514e" font-size="13" font-weight="700">② 이탈자 108명은 어디서 빠졌나</text>
-  <rect x="40" y="306" width="419" height="44" rx="4" fill="#fbd3b5"/>
-  <rect x="461" y="306" width="139" height="44" rx="4" fill="#e6e5e1"/>
-  <text x="56" y="336" fill="#0b0b0b" font-size="24" font-weight="800">75%</text>
-  <text x="112" y="335" fill="#0b0b0b" font-size="14" font-weight="700">결제 버튼 클릭 전 81명</text>
-  <text x="474" y="333" fill="#52514e" font-size="13" font-weight="700">25%</text>
-  <text x="508" y="333" fill="#52514e" font-size="12">클릭 후 27명</text>
-
-  <text x="40" y="398" fill="#52514e" font-size="11">2026.09.07~09.27 · 주문서 페이지 진입 → 주문 완료 페이지 진입 · 테스트 계정 제외 · 빗금 = 해당 단계 이탈 인원</text>
+  <text x="40" y="284" fill="#52514e" font-size="11">2026.09.07~09.27 · 주문서 페이지 진입 → 주문 완료 페이지 진입 · 테스트 계정 제외 · 빗금 = 해당 단계 이탈 인원</text>
 </svg>
