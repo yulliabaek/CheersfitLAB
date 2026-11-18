@@ -69,7 +69,7 @@ _쿠폰 선택 구조를 단순화하고 입력 오류를 즉시 안내하면, �
 
 <sub>자사몰 매출 기여도 = 일반 결제 매출 비중 53.6% × 상대 상승률 (주문서 진입 수·1인당 결제 금액·간편 결제 매출이 그대로라는 가정, 유입 규모와 무관) · 21일 환산 = 9/7~9/27 결제 완료 171명 × 상대 상승률 × 1인당 41,711원(카페24 주문 기준), 같은 유입 가정의 참고값 · 업계 상한 참고: 체크아웃 UX 전반 개선 시 전환율 최대 +35%³ (이번은 쿠폰·배송지 부분 개선) · 시나리오는 유사 UX 개선의 효과 크기를 참고한 추정치이며, 실제 성과는 개선 전후 비교로 측정해 유입·시즌 등 외부 요인이 함께 반영될 수 있음</sub>
 
-<sub>출처 ¹ Browne & Jones (2017), What works in e-commerce – a meta-analysis of 6,700 online experiments, Qubit ² Georgiev (2022), What Can Be Learned From 1,001 A/B Tests?, Analytics-Toolkit ³ Baymard Institute, Cart & Checkout Usability Research</sub>
+<sub>출처 ¹ Browne & Jones (2017), What works in e-commerce – a meta-analysis of 6,700 online experiments, Qubit: 대형 이커머스 실험 6,700건을 유형별로 분석한 메타분석. 희소성 문구(재고 알림)가 방문자당 매출 평균 +2.9%(95% CI 2.3~3.6%, 125건)로 가장 효과가 컸고, 전체 실험의 90%는 매출 변화 ±1.2% 이내 · ² Georgiev (2022), What Can Be Learned From 1,001 A/B Tests?, Analytics-Toolkit: 결과와 무관하게 수집한 온라인 실험 1,001건 메타분석. 전체 상승률은 중앙값 0.08%·평균 2.08%, 통계적으로 유의하게 효과가 확인된 실험은 중앙값 7.5%·평균 15.9% · ³ Baymard Institute, Cart & Checkout Usability Research: 대형 이커머스 체크아웃 사용성 연구. 평균 32개 개선 항목을 반영하면 전환율 최대 +35% 개선 잠재력</sub>
 
 ---
 
