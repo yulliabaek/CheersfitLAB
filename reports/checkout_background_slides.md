@@ -2,7 +2,7 @@
 
 > 기준: 2026.09.07~09.27(21일), Amplitude(appId 847753), Unique Users, Conversion Window 1일
 > 퍼널 수치 출처: 노션 「주문서 개선」 / 1인당 결제 금액: 카페24 주문 데이터(nerdboard) − 간편 결제
-> 시나리오 근거: 외부 벤치마크(DRIP, VWO, Baymard)만 인용. 다른 집계 기간의 내부 수치는 사용하지 않음.
+> 시나리오 근거: 외부 벤치마크(Qubit 메타분석, Analytics-Toolkit 메타분석, Baymard)만 인용, 모두 원문 확인. 다른 집계 기간의 내부 수치는 사용하지 않음.
 > ※ 주문서 진입자 대부분이 신규 고객이라(9월 자사몰 주문의 79.2%가 신규 고객 첫 주문) 신규·기존을 구분하지 않고 전체 기준으로 집계함.
 
 ---
@@ -63,13 +63,13 @@ _쿠폰 선택 구조를 단순화하고 입력 오류를 즉시 안내하면, �
 
 | 시나리오 | 상대 상승률 | 근거 | 주문서 전환율 | 자사몰 매출 기여도 | 참고: 21일 환산 |
 |---|---|---|---|---|---|
-| 보수 | +3% | A/B 테스트 상승률 중앙값¹ | 61.3% → 63.1% | +1.6% | 약 21만 원 |
-| **기본** | **+10~15%** | 성공 테스트의 일반적 상승폭 10~20%² | → **67.4~70.5%** | **+5.4~8.0%** | 약 71~107만 원 |
-| 낙관 | +20% | 성공 테스트 상승폭 상단² | → 73.6% | +10.7% | 약 143만 원 |
+| 보수 | +3% | 이커머스 실험 6,700건 중 최고 효과 유형 평균 +2.9%¹ | 61.3% → 63.1% | +1.6% | 약 21만 원 |
+| **기본** | **+10~15%** | 성공 A/B 테스트 상승률 중앙값 7.5% ~ 평균 15.9%² | → **67.4~70.5%** | **+5.4~8.0%** | 약 71~107만 원 |
+| 낙관 | +20% | 성공 테스트 평균(15.9%²) 초과, 체크아웃 UX 개선 잠재치 35%³의 절반 수준 | → 73.6% | +10.7% | 약 143만 원 |
 
 <sub>자사몰 매출 기여도 = 일반 결제 매출 비중 53.6% × 상대 상승률 (주문서 진입 수·1인당 결제 금액·간편 결제 매출이 그대로라는 가정, 유입 규모와 무관) · 21일 환산 = 9/7~9/27 결제 완료 171명 × 상대 상승률 × 1인당 41,711원(카페24 주문 기준), 같은 유입 가정의 참고값 · 낙관 시나리오도 이탈 108명 중 34명 회복 수준 · 체크아웃 전면 개편 사례(최대 +35%³)는 부분 개선인 이번 건에 미적용 · 간편 결제 수준은 고객 성향 차이로 목표에서 제외</sub>
 
-<sub>출처 ¹ DRIP, Statistical Power in A/B Testing ² Evinent, Ecommerce A/B Testing (VWO 2025 State of Optimization 인용) ³ Baymard Institute, Cart & Checkout Usability Research</sub>
+<sub>출처 ¹ Browne & Jones (2017), What works in e-commerce – a meta-analysis of 6,700 online experiments, Qubit ² Georgiev (2022), What Can Be Learned From 1,001 A/B Tests?, Analytics-Toolkit ³ Baymard Institute, Cart & Checkout Usability Research</sub>
 
 ---
 
@@ -92,6 +92,6 @@ _쿠폰 선택 구조를 단순화하고 입력 오류를 즉시 안내하면, �
 - 월 단위·자사몰 전체(간편 결제 포함) 기준이라 21일 주문서 진입자 기준 정확한 값은 카페24 주문 엑셀로 확정 필요
 
 ## 출처 URL
-1. https://dripagency.de/blog/statistical-power-ab-testing
-2. https://evinent.com/blog/what-is-ecommerce-ab-testing
+1. https://gwern.net/doc/economics/advertising/2017-browne.pdf (Qubit 원문 PDF 사본)
+2. https://blog.analytics-toolkit.com/2022/what-can-be-learned-from-1001-a-b-tests/
 3. https://baymard.com/research/checkout-usability
