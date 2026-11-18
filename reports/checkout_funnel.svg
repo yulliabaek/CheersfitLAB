@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 380" width="640" height="380" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" role="img" aria-label="주문서 퍼널: 279명 진입, 결제 버튼 전 81명 이탈(이탈자의 75%), 결제 버튼 후 27명 이탈(25%), 171명 결제 완료">
-  <title>주문서 퍼널 — 이탈자의 75%가 결제 버튼 클릭 전에 발생</title>
-  <rect width="640" height="380" fill="#fcfcfb"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" width="640" height="420" font-family="Pretendard, 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif" role="img" aria-label="주문서 퍼널: 279명 진입, 결제 버튼 클릭 198명, 결제 완료 171명. 이탈자 108명 중 결제 버튼 클릭 전 81명(75%), 클릭 후 27명(25%)">
+  <title>주문서 퍼널과 이탈자 분포</title>
+  <rect width="640" height="420" fill="#fcfcfb"/>
   <defs>
     <pattern id="lost" patternUnits="userSpaceOnUse" width="8" height="8" patternTransform="rotate(45)">
       <rect width="8" height="8" fill="#fde6d4"/>
@@ -12,45 +12,39 @@
     </pattern>
   </defs>
 
-  <!-- baseline -->
-  <line x1="40" y1="310" x2="600" y2="310" stroke="#d6d5d0" stroke-width="1"/>
+  <!-- ===== Part 1: funnel (scale 279 -> 160px, base y=230) ===== -->
+  <text x="40" y="34" fill="#52514e" font-size="13" font-weight="700">① 주문서 퍼널</text>
+  <line x1="40" y1="230" x2="600" y2="230" stroke="#d6d5d0" stroke-width="1"/>
 
-  <!-- scale: 279 -> 220px, base y=310 -->
-  <!-- bar 1: 279 -->
-  <path d="M90,310 V94 a4,4 0 0 1 4,-4 H186 a4,4 0 0 1 4,4 V310 Z" fill="#7aa9e0"/>
-  <!-- bar 2: 198 (156.1px) + lost 81 (63.9px) -->
-  <path d="M270,310 V157.9 a4,4 0 0 1 4,-4 H366 a4,4 0 0 1 4,4 V310 Z" fill="#7aa9e0"/>
-  <rect x="270" y="90" width="100" height="61.9" rx="4" fill="url(#lost)" stroke="#e8894a" stroke-width="1.5" stroke-dasharray="4 3"/>
-  <!-- bar 3: 171 (134.8px) + lost 27 (21.3px) -->
-  <path d="M450,310 V179.2 a4,4 0 0 1 4,-4 H546 a4,4 0 0 1 4,4 V310 Z" fill="#7aa9e0"/>
-  <rect x="450" y="153.9" width="100" height="19.3" rx="3" fill="url(#lost2)" stroke="#b5b4ae" stroke-width="1" stroke-dasharray="3 3"/>
+  <path d="M90,230 V74 a4,4 0 0 1 4,-4 H186 a4,4 0 0 1 4,4 V230 Z" fill="#7aa9e0"/>
+  <path d="M270,230 V120.5 a4,4 0 0 1 4,-4 H366 a4,4 0 0 1 4,4 V230 Z" fill="#7aa9e0"/>
+  <rect x="270" y="70" width="100" height="44.5" rx="4" fill="url(#lost)" stroke="#e8894a" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <path d="M450,230 V135.9 a4,4 0 0 1 4,-4 H546 a4,4 0 0 1 4,4 V230 Z" fill="#7aa9e0"/>
+  <rect x="450" y="116.5" width="100" height="13.5" rx="3" fill="url(#lost2)" stroke="#b5b4ae" stroke-width="1" stroke-dasharray="3 3"/>
 
-  <!-- PRIMARY: the 75% callout -->
-  <g>
-    <line x1="370" y1="121" x2="392" y2="121" stroke="#e8894a" stroke-width="1.5"/>
-    <text x="396" y="112" fill="#0b0b0b" font-size="34" font-weight="800">75%</text>
-    <text x="396" y="134" fill="#0b0b0b" font-size="14" font-weight="700">결제 버튼 클릭 전 이탈 81명</text>
-  </g>
+  <!-- dropout counts on hatched areas -->
+  <text x="320" y="98" fill="#0b0b0b" font-size="15" font-weight="800" text-anchor="middle">−81명</text>
+  <text x="500" y="110" fill="#52514e" font-size="12" font-weight="700" text-anchor="middle">−27명</text>
 
-  <!-- SECONDARY: 25% -->
-  <g>
-    <line x1="550" y1="163.5" x2="562" y2="163.5" stroke="#b5b4ae" stroke-width="1"/>
-    <text x="566" y="160" fill="#52514e" font-size="13" font-weight="700">25%</text>
-    <text x="566" y="175" fill="#52514e" font-size="11">클릭 후 27명</text>
-  </g>
-
-  <!-- TERTIARY: stage counts (inside bars, small) -->
-  <g fill="#ffffff" font-size="14" font-weight="700" text-anchor="middle">
-    <text x="140" y="296">279명</text>
-    <text x="320" y="296">198명</text>
-    <text x="500" y="296">171명</text>
+  <g fill="#ffffff" font-size="13" font-weight="700" text-anchor="middle">
+    <text x="140" y="218">279명</text>
+    <text x="320" y="218">198명</text>
+    <text x="500" y="218">171명</text>
   </g>
   <g fill="#52514e" font-size="13" text-anchor="middle">
-    <text x="140" y="332">주문서 진입</text>
-    <text x="320" y="332">결제 버튼 클릭</text>
-    <text x="500" y="332">결제 완료</text>
+    <text x="140" y="250">주문서 진입</text>
+    <text x="320" y="250">결제 버튼 클릭</text>
+    <text x="500" y="250">결제 완료</text>
   </g>
 
-  <text x="40" y="40" fill="#52514e" font-size="13">이탈자 108명이 어디서 빠졌나</text>
-  <text x="40" y="368" fill="#52514e" font-size="11">2026.09.07~09.27 · 주문서 페이지 진입 → 주문 완료 페이지 진입 · 테스트 계정 제외 · 빗금 = 이탈 인원</text>
+  <!-- ===== Part 2: where the 108 dropouts went (100% bar, 560px) ===== -->
+  <text x="40" y="294" fill="#52514e" font-size="13" font-weight="700">② 이탈자 108명은 어디서 빠졌나</text>
+  <rect x="40" y="306" width="419" height="44" rx="4" fill="#fbd3b5"/>
+  <rect x="461" y="306" width="139" height="44" rx="4" fill="#e6e5e1"/>
+  <text x="56" y="336" fill="#0b0b0b" font-size="24" font-weight="800">75%</text>
+  <text x="112" y="335" fill="#0b0b0b" font-size="14" font-weight="700">결제 버튼 클릭 전 81명</text>
+  <text x="474" y="333" fill="#52514e" font-size="13" font-weight="700">25%</text>
+  <text x="508" y="333" fill="#52514e" font-size="12">클릭 후 27명</text>
+
+  <text x="40" y="398" fill="#52514e" font-size="11">2026.09.07~09.27 · 주문서 페이지 진입 → 주문 완료 페이지 진입 · 테스트 계정 제외 · 빗금 = 해당 단계 이탈 인원</text>
 </svg>
